@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "349734449976",
+    "project_id": "bad-mask-inspection-system",
+    "storage_bucket": "bad-mask-inspection-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349734449976:android:d045c9ec9919a2ec3647cd",
+        "android_client_info": {
+          "package_name": "com.example.bad_mask_inspection_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349734449976-9m29c98pppjnr8ijjp4dnr575b37r7r4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU9ZFyE7EBeIkl3UuOG_7mBbv92-IMmGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349734449976-9m29c98pppjnr8ijjp4dnr575b37r7r4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
