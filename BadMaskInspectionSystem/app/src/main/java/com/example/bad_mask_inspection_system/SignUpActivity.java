@@ -1,10 +1,12 @@
 package com.example.bad_mask_inspection_system;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -27,11 +29,11 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Create Account");
-
-        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("회원가입");
+//
+//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
+//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -39,17 +41,10 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.signUpButton).setOnClickListener(onClickListener);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-    }
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch(v.getId()){
+            switch (v.getId()) {
                 case R.id.signUpButton:
                     signUp();
                     break;
@@ -58,37 +53,59 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
     private void signUp() {
-        String email = ((EditText)findViewById(R.id.editTextTextEmailAddress)).getText().toString();
-        String password = ((EditText)findViewById(R.id.editTextTextPassword)).getText().toString();
+        String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
+        String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
+        String passwordCheck = ((EditText) findViewById(R.id.editTextTextPassword2)).getText().toString();
+        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+        String ownNumber = ((EditText) findViewById(R.id.editTextTextOwnNumber)).getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String email = user.getEmail();
-                            String uid = user.getUid();
-                            String name = ((EditText)findViewById(R.id.editTextTextPersonName)).getText().toString();
-                            String ownNumber = ((EditText)findViewById(R.id.editTextTextOwnNumber)).getText().toString();
+        if (name.length() > 0 && ownNumber.length() > 0 && email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
+            if (password.equals(passwordCheck)) {
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    startToast("회원가입에 성공하였습니다.");
+                                    String email = user.getEmail();
+                                    String uid = user.getUid();
 
-                            //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                            HashMap<Object,String> hashMap = new HashMap<>();
+                                    //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
+                                    HashMap<Object, String> hashMap = new HashMap<>();
 
-                            hashMap.put("uid",uid);
-                            hashMap.put("email",email);
-                            hashMap.put("name",name);
-                            hashMap.put("ownNumber",ownNumber);
+                                    hashMap.put("uid", uid);
+                                    hashMap.put("email", email);
+                                    hashMap.put("name", name);
+                                    hashMap.put("ownNumber", ownNumber);
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        }
+                                    startLoginActivity();
 
-                        // ...
-                    }
-                });
+                                } else {
+                                    if (task.getException() != null) {
+                                        startToast(task.getException().toString());
+                                    }
+                                }
+                            }
+                        });
+            } else {
+                startToast("비밀번호가 일치하지 않습니다.");
+            }
+        } else {
+            startToast("입력하지 않은 항목이 있습니다.");
+        }
+
+
+    }
+
+    private void startToast(String msg) {
+        Toast.makeText(this, msg,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
     }
 }

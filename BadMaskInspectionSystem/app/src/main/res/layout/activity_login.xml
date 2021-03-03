@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:gravity="center_vertical"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:orientation="vertical"
         >
@@ -19,26 +19,11 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="70dp"
-            android:text="회원가입"
+            android:layout_marginBottom="70dp"
+            android:text="로그인"
             android:textColor="#004497"
             android:textSize="36dp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="이름"
-            android:textColor="#004497"
-            android:textSize="20dp"></TextView>
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:ems="10"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -73,49 +58,16 @@
             android:ems="10"
             android:inputType="textPassword" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="비밀번호 확인"
-            android:textColor="#004497"
-            android:textSize="20dp"></TextView>
-
-        <EditText
-            android:id="@+id/editTextTextPassword2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:layout_marginBottom="30dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="고유번호"
-            android:textColor="#004497"
-            android:textSize="20dp"></TextView>
-
-        <EditText
-            android:id="@+id/editTextTextOwnNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:ems="10" />
-
         <Button
-            android:id="@+id/signUpButton"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입"
+            android:text="로그인"
             app:backgroundTint="#6DB1FF"
             android:background="@drawable/radius"
             android:textSize="20dp"
-            android:layout_marginBottom="50dp"
             android:paddingVertical="10dp"
             />
 
-
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>

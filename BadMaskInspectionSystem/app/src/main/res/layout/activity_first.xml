@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="#B8D9FF"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="마스크 불량\n검사 시스템"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#004497"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/face_mask"
+            android:layout_marginVertical="20dp">
+
+        </ImageView>
+
+        <Button
+            android:id="@+id/goToLoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:textColor="#004497"
+            app:backgroundTint="#FFFFFF"
+            android:background="@drawable/radius"
+            android:textSize="20dp"
+            android:paddingVertical="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="15dp"
+            />
+
+        <Button
+            android:id="@+id/goToSignUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            app:backgroundTint="#57A4FF"
+            android:background="@drawable/radius"
+            android:textSize="20dp"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
