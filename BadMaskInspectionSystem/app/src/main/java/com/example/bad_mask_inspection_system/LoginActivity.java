@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
 
     @Override
@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+        findViewById(R.id.findPassword).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -47,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.loginButton:
                     login();
+                    break;
+                case R.id.findPassword:
+                    startPasswordResetActivity();
                     break;
             }
         }
@@ -86,6 +90,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
+
+    private void startPasswordResetActivity() {
+        Intent intent = new Intent(this, PasswordResetActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }

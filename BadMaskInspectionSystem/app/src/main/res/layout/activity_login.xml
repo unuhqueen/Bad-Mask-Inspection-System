@@ -5,15 +5,13 @@
     android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    >
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView"
@@ -37,9 +35,9 @@
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="30dp"/>
+            android:inputType="textEmailAddress" />
 
 
         <TextView
@@ -62,12 +60,36 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그인"
-            app:backgroundTint="#6DB1FF"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/radius"
-            android:textSize="20dp"
             android:paddingVertical="10dp"
-            />
+            android:text="로그인"
+            android:textSize="20dp"
+            app:backgroundTint="#6DB1FF" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호를 잊으셨나요?"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/findPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 찾기"
+                android:textSize="16dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#6DB1FF"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

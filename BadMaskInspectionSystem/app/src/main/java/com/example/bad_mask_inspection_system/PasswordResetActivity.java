@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.HashMap;
 
 public class PasswordResetActivity extends AppCompatActivity {
-    private static final String TAG = "PasswordResetActivity";
     private FirebaseAuth mAuth;
 
     @Override
@@ -54,20 +53,14 @@ public class PasswordResetActivity extends AppCompatActivity {
 
     private void send() {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
-        String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
 
-        if (email.length() > 0 && password.length() > 0) {
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        if (email.length() > 0) {
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("로그인에 성공하였습니다.");
-                            } else {
-                                if (task.getException() != null) {
-                                    startToast(task.getException().toString());
-                                }
+                                startToast("이메일을 보냈습니다.");
                             }
                         }
                     });

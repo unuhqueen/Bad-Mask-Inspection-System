@@ -1,6 +1,7 @@
 package com.example.bad_mask_inspection_system;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
-    private static final String TAG = "SignUpActivity";
     private FirebaseAuth mAuth;
 
     @Override
@@ -47,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.signUpButton:
                     signUp();
+                    profileUpdate();
                     break;
             }
         }
@@ -56,7 +58,6 @@ public class SignUpActivity extends AppCompatActivity {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
         String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
         String passwordCheck = ((EditText) findViewById(R.id.editTextTextPassword2)).getText().toString();
-        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
         String ownNumber = ((EditText) findViewById(R.id.editTextTextOwnNumber)).getText().toString();
 
         if (name.length() > 0 && ownNumber.length() > 0 && email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
@@ -95,6 +96,32 @@ public class SignUpActivity extends AppCompatActivity {
             startToast("입력하지 않은 항목이 있습니다.");
         }
 
+
+    }
+
+    private void profileUpdate(){
+        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+
+        if(name.length() > 0) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "User profile updated.");
+                            }
+                        }
+                    });
+        } else {
+            startToast("입력하지 않은 항목이 있습니다.");
+        }
 
     }
 
