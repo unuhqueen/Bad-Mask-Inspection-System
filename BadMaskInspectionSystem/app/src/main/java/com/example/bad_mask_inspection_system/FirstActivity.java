@@ -31,22 +31,17 @@ public class FirstActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.goToLoginButton:
-                    startLoginActivity();
+                    myStartActivity(LoginActivity.class);
                     break;
                 case R.id.goToSignUpButton:
-                    startSignUpActivity();
+                    myStartActivity(SignUpActivity.class);
                     break;
             }
         }
     };
 
-    private void startLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-    }
-    private void startSignUpActivity() {
-        Intent intent = new Intent(this, SignUpActivity.class);
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }

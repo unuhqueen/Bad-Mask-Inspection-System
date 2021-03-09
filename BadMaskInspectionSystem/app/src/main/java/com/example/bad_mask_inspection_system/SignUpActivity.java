@@ -14,11 +14,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
@@ -48,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.signUpButton:
                     signUp();
-                    profileUpdate();
                     break;
             }
         }
@@ -58,7 +60,9 @@ public class SignUpActivity extends AppCompatActivity {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
         String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
         String passwordCheck = ((EditText) findViewById(R.id.editTextTextPassword2)).getText().toString();
+        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
         String ownNumber = ((EditText) findViewById(R.id.editTextTextOwnNumber)).getText().toString();
+
 
         if (name.length() > 0 && ownNumber.length() > 0 && email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
             if (password.equals(passwordCheck)) {
@@ -69,18 +73,39 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     startToast("회원가입에 성공하였습니다.");
-                                    String email = user.getEmail();
                                     String uid = user.getUid();
 
                                     //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                                    HashMap<Object, String> hashMap = new HashMap<>();
+//                                    HashMap<Object, String> hashMap = new HashMap<>();
+//
+//                                    hashMap.put("uid", uid);
+//                                    hashMap.put("email", email);
+//                                    hashMap.put("name", name);
+//                                    hashMap.put("ownNumber", ownNumber);
 
-                                    hashMap.put("uid", uid);
-                                    hashMap.put("email", email);
-                                    hashMap.put("name", name);
-                                    hashMap.put("ownNumber", ownNumber);
+                                    // Access a Cloud Firestore instance from your Activity
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                                    startLoginActivity();
+                                    MemberInfo memberInfo = new MemberInfo(name, ownNumber, email, uid);
+                                    if (user != null) {
+                                        db.collection("users").document(uid).set(memberInfo)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("Success", "회원정보 등록 성공");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w("Error", "Error writing document", e);
+                                                    }
+                                                });
+                                        ;
+                                    }
+
+
+                                    myStartActivity(LoginActivity.class);
 
                                 } else {
                                     if (task.getException() != null) {
@@ -99,39 +124,23 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void profileUpdate(){
-        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
-
-        if(name.length() > 0) {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
-                    .build();
-
-            user.updateProfile(profileUpdates)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "User profile updated.");
-                            }
-                        }
-                    });
-        } else {
-            startToast("입력하지 않은 항목이 있습니다.");
-        }
-
-    }
+//    private void profileUpdate() {
+//        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+//        String ownNumber = ((EditText) findViewById(R.id.editTextTextOwnNumber)).getText().toString();
+//
+//         else{
+//            startToast("입력하지 않은 항목이 있습니다.");
+//        }
+//
+//    }
 
     private void startToast(String msg) {
         Toast.makeText(this, msg,
                 Toast.LENGTH_SHORT).show();
     }
 
-    private void startLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }

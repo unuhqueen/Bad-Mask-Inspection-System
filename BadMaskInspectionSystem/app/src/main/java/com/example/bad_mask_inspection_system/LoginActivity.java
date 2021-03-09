@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     login();
                     break;
                 case R.id.findPassword:
-                    startPasswordResetActivity();
+                    myStartActivity(PasswordResetActivity.class);
                     break;
             }
         }
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인에 성공하였습니다.");
-                                startMainActivity();
+                                myStartActivity(MainActivity.class);
                             } else {
                                 if (task.getException() != null) {
                                     startToast(task.getException().toString());
@@ -88,14 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-    }
-
-    private void startPasswordResetActivity() {
-        Intent intent = new Intent(this, PasswordResetActivity.class);
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
