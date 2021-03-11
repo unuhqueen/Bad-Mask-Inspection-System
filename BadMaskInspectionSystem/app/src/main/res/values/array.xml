@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="equipment_array">
+        <item>1호기</item>
+        <item>2호기</item>
+        <item>3호기</item>
+        <item>4호기</item>
+        <item>5호기</item>
+        <item>6호기</item>
+        <item>7호기</item>
+        <item>8호기</item>
+        <item>9호기</item>
+        <item>10호기</item>
+    </string-array>
+</resources>

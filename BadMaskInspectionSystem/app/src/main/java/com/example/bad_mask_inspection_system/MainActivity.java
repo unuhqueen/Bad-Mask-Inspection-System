@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setTitle("설비 및 마스크 선택");
@@ -65,16 +68,21 @@ public class MainActivity extends AppCompatActivity {
 //            });
 //        }
 
-        findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
+        findViewById(R.id.completeButton).setOnClickListener(onClickListener);
+
+        Spinner spinner = findViewById(R.id.equipmentSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.equipment_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.logoutButton:
-                    FirebaseAuth.getInstance().signOut();
-                    startFirstActivity();
+                case R.id.completeButton:
                     break;
             }
         }
