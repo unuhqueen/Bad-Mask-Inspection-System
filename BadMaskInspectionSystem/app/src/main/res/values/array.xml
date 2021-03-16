@@ -12,4 +12,9 @@
         <item>9호기</item>
         <item>10호기</item>
     </string-array>
+    <string-array name="mask_array">
+        <item>@string/list_item_01</item>
+        <item>@string/list_item_02</item>
+        <item>@string/list_item_03</item>
+    </string-array>
 </resources>

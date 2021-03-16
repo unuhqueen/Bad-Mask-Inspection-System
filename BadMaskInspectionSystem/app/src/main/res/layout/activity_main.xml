@@ -28,7 +28,9 @@
             android:id="@+id/equipmentSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"/>
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/spinner_background"
+            android:padding="10dp"/>
 
 
         <TextView
@@ -45,7 +47,10 @@
             android:id="@+id/maskSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/spinner_background"
+            android:padding="10dp"
+            />
 
         <Button
             android:id="@+id/completeButton"
@@ -59,14 +64,5 @@
             app:backgroundTint="#6DB1FF" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:orientation="vertical">
-
-
-
-    </LinearLayout>
 
 </RelativeLayout>
