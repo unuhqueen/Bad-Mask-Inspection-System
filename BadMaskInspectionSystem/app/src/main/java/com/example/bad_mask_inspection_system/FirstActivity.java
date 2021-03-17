@@ -12,15 +12,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class FirstActivity extends AppCompatActivity {
 
     @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("마스크 불량 검사 시스템");
-//
-//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
 
         findViewById(R.id.goToLoginButton).setOnClickListener(onClickListener);
         findViewById(R.id.goToSignUpButton).setOnClickListener(onClickListener);

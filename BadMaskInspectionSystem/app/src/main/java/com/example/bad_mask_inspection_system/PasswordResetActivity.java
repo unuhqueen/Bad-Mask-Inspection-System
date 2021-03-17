@@ -28,12 +28,6 @@ public class PasswordResetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_reset);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("로그인");
-//
-//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 

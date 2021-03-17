@@ -33,12 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("회원가입");
-//
-//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -74,14 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     startToast("회원가입에 성공하였습니다.");
                                     String uid = user.getUid();
-
-                                    //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-//                                    HashMap<Object, String> hashMap = new HashMap<>();
-//
-//                                    hashMap.put("uid", uid);
-//                                    hashMap.put("email", email);
-//                                    hashMap.put("name", name);
-//                                    hashMap.put("ownNumber", ownNumber);
 
                                     // Access a Cloud Firestore instance from your Activity
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -123,16 +109,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-
-//    private void profileUpdate() {
-//        String name = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
-//        String ownNumber = ((EditText) findViewById(R.id.editTextTextOwnNumber)).getText().toString();
-//
-//         else{
-//            startToast("입력하지 않은 항목이 있습니다.");
-//        }
-//
-//    }
 
     private void startToast(String msg) {
         Toast.makeText(this, msg,

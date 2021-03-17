@@ -29,12 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("로그인");
-//
-//        actionBar.setDisplayHomeAsUpEnabled(true); //뒤로가기버튼
-//        actionBar.setDisplayShowHomeEnabled(true); //홈 아이콘
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -68,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인에 성공하였습니다.");
-                                myStartActivity(MainActivity.class);
+                                myStartActivity(SelectFirstActivity.class);
                             } else {
                                 if (task.getException() != null) {
                                     startToast(task.getException().toString());
@@ -90,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 }
