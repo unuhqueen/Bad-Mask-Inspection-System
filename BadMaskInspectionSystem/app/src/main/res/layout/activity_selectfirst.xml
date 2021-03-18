@@ -21,7 +21,7 @@
             android:background="@drawable/radius"
             android:paddingVertical="10dp"
             android:text="마스크 불량 검사"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:backgroundTint="#6DB1FF" />
 
         <Button
@@ -32,7 +32,7 @@
             android:background="@drawable/radius"
             android:paddingVertical="10dp"
             android:text="작업 내역서 작성"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:backgroundTint="#6DB1FF" />
 
         </LinearLayout>

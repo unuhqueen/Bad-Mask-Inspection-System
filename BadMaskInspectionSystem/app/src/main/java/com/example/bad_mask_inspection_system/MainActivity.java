@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         final Spinner maskSpinner = (Spinner) findViewById(R.id.maskSpinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.equipment_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this, R.array.equipment_array, R.layout.spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
         equipmentSpinner.setAdapter(adapter);
 
         equipmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
-                this, R.array.mask_array, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this, R.array.mask_array, R.layout.spinner_item);
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown);
         maskSpinner.setAdapter(adapter2);
 
         maskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startFirstActivity() {
         Intent intent = new Intent(this, FirstActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

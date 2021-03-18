@@ -21,7 +21,7 @@
             android:layout_marginBottom="20dp"
             android:text="설비 선택"
             android:textColor="#004497"
-            android:textSize="36dp"
+            android:textSize="48dp"
             android:textStyle="bold" />
 
         <Spinner
@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="70dp"
             android:background="@drawable/spinner_background"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            />
 
 
         <TextView
@@ -40,14 +41,14 @@
             android:layout_marginBottom="20dp"
             android:text="마스크 종류"
             android:textColor="#004497"
-            android:textSize="36dp"
+            android:textSize="48dp"
             android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/maskSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/spinner_background"
             android:padding="10dp"
             />
@@ -60,7 +61,7 @@
             android:background="@drawable/radius"
             android:paddingVertical="10dp"
             android:text="완료"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:backgroundTint="#6DB1FF" />
     </LinearLayout>
 

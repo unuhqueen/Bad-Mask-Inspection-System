@@ -40,10 +40,10 @@ public class MaskInspectionActivity extends AppCompatActivity {
         int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
 
-        TextView textView = (TextView) findViewById(R.id.equipNum);
+        TextView textView = (TextView) findViewById(R.id.equipSelected);
         textView.setText(String.valueOf(selectedItemIndex)+"호기");
 
-        TextView textView2 = (TextView) findViewById(R.id.maskNum);
+        TextView textView2 = (TextView) findViewById(R.id.maskSelected);
         switch(selectedItemIndex2){
             case 1:
                 textView2.setText("KF-94");
@@ -65,7 +65,7 @@ public class MaskInspectionActivity extends AppCompatActivity {
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

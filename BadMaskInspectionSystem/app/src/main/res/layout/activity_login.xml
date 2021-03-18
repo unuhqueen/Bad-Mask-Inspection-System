@@ -17,10 +17,10 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="90dp"
             android:text="로그인"
             android:textColor="#004497"
-            android:textSize="36dp"
+            android:textSize="48dp"
             android:textStyle="bold" />
 
         <TextView
@@ -29,15 +29,16 @@
             android:layout_marginBottom="20dp"
             android:text="이메일"
             android:textColor="#004497"
-            android:textSize="20dp"></TextView>
+            android:textSize="30dp"></TextView>
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textSize="30dp"/>
 
 
         <TextView
@@ -46,15 +47,16 @@
             android:layout_marginBottom="20dp"
             android:text="비밀번호"
             android:textColor="#004497"
-            android:textSize="20dp"></TextView>
+            android:textSize="30dp"></TextView>
 
         <EditText
             android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="30dp"/>
 
         <Button
             android:id="@+id/loginButton"
@@ -64,7 +66,7 @@
             android:background="@drawable/radius"
             android:paddingVertical="10dp"
             android:text="로그인"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:backgroundTint="#6DB1FF" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,14 +80,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비밀번호를 잊으셨나요?"
-                android:textSize="16dp" />
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/findPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비밀번호 찾기"
-                android:textSize="16dp"
+                android:textSize="24dp"
                 android:layout_marginHorizontal="10dp"
                 android:textColor="#6DB1FF"/>
 
