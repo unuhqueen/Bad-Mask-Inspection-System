@@ -49,17 +49,6 @@ public class MaskInspectionActivity extends AppCompatActivity {
 
     private static final String TAG = "MaskInspectionActivity";
 
-    @GlideModule
-    public class MyAppGlideModule extends AppGlideModule {
-
-        @Override
-        public void registerComponents(Context context, Glide glide, Registry registry) {
-            // Register FirebaseImageLoader to handle StorageReference
-            registry.append(StorageReference.class, InputStream.class,
-                    new FirebaseImageLoader.Factory());
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +56,7 @@ public class MaskInspectionActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user == null) {
+        if (user == null) {
             startFirstActivity();
         }
 
@@ -77,10 +66,10 @@ public class MaskInspectionActivity extends AppCompatActivity {
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
 
         TextView textView = (TextView) findViewById(R.id.equipSelected);
-        textView.setText(String.valueOf(selectedItemIndex)+"호기");
+        textView.setText(String.valueOf(selectedItemIndex) + "호기");
 
         TextView textView2 = (TextView) findViewById(R.id.maskSelected);
-        switch(selectedItemIndex2){
+        switch (selectedItemIndex2) {
             case 1:
                 textView2.setText("KF-94");
                 break;
@@ -154,20 +143,20 @@ public class MaskInspectionActivity extends AppCompatActivity {
 //
 //    }
 
-    protected void listAllImage(){
+    protected void listAllImage() {
         int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
         String str = "";
 
-        switch(selectedItemIndex2){
+        switch (selectedItemIndex2) {
             case 1:
-                str = "-KF-94/";
+                str = "-KF-94";
                 break;
             case 2:
-                str = "-KF-80/";
+                str = "-KF-80";
                 break;
             case 3:
-                str = "-KF-AD/";
+                str = "-KF-AD";
                 break;
         }
 
@@ -176,36 +165,39 @@ public class MaskInspectionActivity extends AppCompatActivity {
         // we'll create a Reference to that folder:
         // var storageRef = firebase.storage().ref("your_folder");
 
-        LinearLayout layout = (LinearLayout)findViewById(R.id.maskImageLayout);
-        ImageView iv = new ImageView(this);
-        iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        layout.addView(iv);
-
         listRef.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @Override
                     public void onSuccess(ListResult listResult) {
-                        for (StorageReference prefix : listResult.getPrefixes()) {
-                            // All the prefixes under listRef.
-                            // You may call listAll() recursively on them.
-
-                        }
-
                         for (StorageReference item : listResult.getItems()) {
-                            // All the items under listRef.
-                            Glide.with(getApplicationContext())
-                                    .load(listRef)
-                                    .into(iv);
+                            LinearLayout layout = (LinearLayout) findViewById(R.id.maskImageLayout);
+                            ImageView iv = new ImageView(MaskInspectionActivity.this);
+                            iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                            layout.addView(iv);
+                            item.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    if (task.isSuccessful()) {
+                                        // Glide 이용하여 이미지뷰에 로딩
+                                        Glide.with(MaskInspectionActivity.this)
+                                                .load(task.getResult())
+                                                .into(iv);
+                                    } else {
+                                        // URL을 가져오지 못하면 토스트 메세지
+                                        Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Uh-oh, an error occurred!
+                                }
+                            });
+
+
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Uh-oh, an error occurred!
                     }
                 });
-
-
     }
-    }
+}
