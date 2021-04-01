@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,6 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,9 +36,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +48,17 @@ import java.util.Map;
 public class MaskInspectionActivity extends AppCompatActivity {
 
     private static final String TAG = "MaskInspectionActivity";
+
+    @GlideModule
+    public class MyAppGlideModule extends AppGlideModule {
+
+        @Override
+        public void registerComponents(Context context, Glide glide, Registry registry) {
+            // Register FirebaseImageLoader to handle StorageReference
+            registry.append(StorageReference.class, InputStream.class,
+                    new FirebaseImageLoader.Factory());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +98,7 @@ public class MaskInspectionActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.loadButton:
-                    downloadDirect();
+                    listAllImage();
                     break;
             }
         }
@@ -97,41 +116,96 @@ public class MaskInspectionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void downloadDirect(){
+//    protected void downloadDirect(){
+//int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
+//    int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
+//    String str = "";
+//
+//        switch(selectedItemIndex2){
+//        case 1:
+//            str = "-KF-94";
+//            break;
+//        case 2:
+//            str = "-KF-80";
+//            break;
+//        case 3:
+//            str = "-KF-AD";
+//            break;
+//    }
+//
+//        // ImageView in your Activity
+//        ImageView imageView = findViewById(R.id.badMaskImg1);
+//        StorageReference ref = FirebaseStorage.getInstance().getReference().child( Integer.toString(selectedItemIndex) + str + "/1");
+//        // Download directly from StorageReference using Glide // (See MyAppGlideModule for Loader registration)
+//        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Uri> task) {
+//                if (task.isSuccessful()) {
+//                    // Glide 이용하여 이미지뷰에 로딩
+//                    Glide.with(MaskInspectionActivity.this)
+//                            .load(task.getResult())
+//                            .into(imageView);
+//                } else {
+//                    // URL을 가져오지 못하면 토스트 메세지
+//                    Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//    }
+
+    protected void listAllImage(){
         int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
         String str = "";
 
         switch(selectedItemIndex2){
             case 1:
-                str = "-KF-94";
+                str = "-KF-94/";
                 break;
             case 2:
-                str = "-KF-80";
+                str = "-KF-80/";
                 break;
             case 3:
-                str = "-KF-AD";
+                str = "-KF-AD/";
                 break;
         }
 
-        // ImageView in your Activity
-        ImageView imageView = findViewById(R.id.badMaskImg1);
-        StorageReference ref = FirebaseStorage.getInstance().getReference().child( Integer.toString(selectedItemIndex) + str + "/1");
-        // Download directly from StorageReference using Glide // (See MyAppGlideModule for Loader registration)
-        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    // Glide 이용하여 이미지뷰에 로딩
-                    Glide.with(MaskInspectionActivity.this)
-                            .load(task.getResult())
-                            .into(imageView);
-                } else {
-                    // URL을 가져오지 못하면 토스트 메세지
-                    Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        StorageReference listRef = FirebaseStorage.getInstance().getReference().child(Integer.toString(selectedItemIndex) + str);
+        // Since you mentioned your images are in a folder,
+        // we'll create a Reference to that folder:
+        // var storageRef = firebase.storage().ref("your_folder");
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.maskImageLayout);
+        ImageView iv = new ImageView(this);
+        iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        layout.addView(iv);
+
+        listRef.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+                        for (StorageReference prefix : listResult.getPrefixes()) {
+                            // All the prefixes under listRef.
+                            // You may call listAll() recursively on them.
+
+                        }
+
+                        for (StorageReference item : listResult.getItems()) {
+                            // All the items under listRef.
+                            Glide.with(getApplicationContext())
+                                    .load(listRef)
+                                    .into(iv);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+
 
     }
-}
+    }
