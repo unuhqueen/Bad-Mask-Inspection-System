@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -34,7 +35,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -44,6 +47,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class MaskInspectionActivity extends AppCompatActivity {
 
@@ -60,7 +65,7 @@ public class MaskInspectionActivity extends AppCompatActivity {
             startFirstActivity();
         }
 
-        findViewById(R.id.loadButton).setOnClickListener(onClickListener);
+//        findViewById(R.id.loadButton).setOnClickListener(onClickListener);
 
         int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
@@ -80,18 +85,20 @@ public class MaskInspectionActivity extends AppCompatActivity {
                 textView2.setText("KF-AD");
                 break;
         }
+
+        getUpdateDB();
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.loadButton:
-                    listAllImage();
-                    break;
-            }
-        }
-    };
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId()) {
+//                case R.id.loadButton:
+//                    listAllImage();
+//                    break;
+//            }
+//        }
+//    };
 
 
     private void startFirstActivity() {
@@ -99,51 +106,75 @@ public class MaskInspectionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
-//    protected void downloadDirect(){
-//int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
-//    int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
-//    String str = "";
+//    protected void listAllImage() {
+//        int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
+//        int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
+//        String str = "";
 //
-//        switch(selectedItemIndex2){
-//        case 1:
-//            str = "-KF-94";
-//            break;
-//        case 2:
-//            str = "-KF-80";
-//            break;
-//        case 3:
-//            str = "-KF-AD";
-//            break;
+//        switch (selectedItemIndex2) {
+//            case 1:
+//                str = "-KF-94";
+//                break;
+//            case 2:
+//                str = "-KF-80";
+//                break;
+//            case 3:
+//                str = "-KF-AD";
+//                break;
+//        }
+//
+//        StorageReference listRef = FirebaseStorage.getInstance().getReference().child(Integer.toString(selectedItemIndex) + str);
+//        // Since you mentioned your images are in a folder,
+//        // we'll create a Reference to that folder:
+//        // var storageRef = firebase.storage().ref("your_folder");
+//
+//        listRef.listAll()
+//                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+//                    @Override
+//                    public void onSuccess(ListResult listResult) {
+//                        int i = 1;
+//                        for (StorageReference item : listResult.getItems()) {
+//
+//                            LinearLayout layout = (LinearLayout) findViewById(R.id.maskImageLayout);
+//                            TextView tv = new TextView(MaskInspectionActivity.this);
+//                            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                            tv.setText(Integer.toString(i)+". new TextView");
+//                            tv.setTextSize(30);
+//                            tv.setTextColor(0xff004497);
+//                            layout.addView(tv);
+//
+//                            ImageView iv = new ImageView(MaskInspectionActivity.this);
+//                            iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                            layout.addView(iv);
+//                            i++;
+//                            item.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Uri> task) {
+//                                    if (task.isSuccessful()) {
+//                                        // Glide 이용하여 이미지뷰에 로딩
+//                                        Glide.with(MaskInspectionActivity.this)
+//                                                .load(task.getResult())
+//                                                .into(iv);
+//                                    } else {
+//                                        // URL을 가져오지 못하면 토스트 메세지
+//                                        Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    // Uh-oh, an error occurred!
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
 //    }
-//
-//        // ImageView in your Activity
-//        ImageView imageView = findViewById(R.id.badMaskImg1);
-//        StorageReference ref = FirebaseStorage.getInstance().getReference().child( Integer.toString(selectedItemIndex) + str + "/1");
-//        // Download directly from StorageReference using Glide // (See MyAppGlideModule for Loader registration)
-//        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                if (task.isSuccessful()) {
-//                    // Glide 이용하여 이미지뷰에 로딩
-//                    Glide.with(MaskInspectionActivity.this)
-//                            .load(task.getResult())
-//                            .into(imageView);
-//                } else {
-//                    // URL을 가져오지 못하면 토스트 메세지
-//                    Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//    }
 
-    protected void listAllImage() {
+    private void getUpdateDB() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         int selectedItemIndex = getIntent().getIntExtra("EQUIP_SPINNER_ITEM", 0);
         int selectedItemIndex2 = getIntent().getIntExtra("MASK_SPINNER_ITEM", 0);
         String str = "";
@@ -160,44 +191,25 @@ public class MaskInspectionActivity extends AppCompatActivity {
                 break;
         }
 
-        StorageReference listRef = FirebaseStorage.getInstance().getReference().child(Integer.toString(selectedItemIndex) + str);
-        // Since you mentioned your images are in a folder,
-        // we'll create a Reference to that folder:
-        // var storageRef = firebase.storage().ref("your_folder");
+        final DocumentReference docRef = db.collection("defective").document(Integer.toString(selectedItemIndex) + str);
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
 
-        listRef.listAll()
-                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                    @Override
-                    public void onSuccess(ListResult listResult) {
-                        for (StorageReference item : listResult.getItems()) {
-                            LinearLayout layout = (LinearLayout) findViewById(R.id.maskImageLayout);
-                            ImageView iv = new ImageView(MaskInspectionActivity.this);
-                            iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                            layout.addView(iv);
-                            item.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    if (task.isSuccessful()) {
-                                        // Glide 이용하여 이미지뷰에 로딩
-                                        Glide.with(MaskInspectionActivity.this)
-                                                .load(task.getResult())
-                                                .into(iv);
-                                    } else {
-                                        // URL을 가져오지 못하면 토스트 메세지
-                                        Toast.makeText(MaskInspectionActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                if (snapshot != null && snapshot.exists()) {
+                    Log.d(TAG, "Current data: " + snapshot.getData());
+                    TextView tv = (TextView) findViewById(R.id.isMaskDefective);
+                    tv.setText(snapshot.getData().get("defectiveOrNot").toString());
 
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Uh-oh, an error occurred!
-                                }
-                            });
-
-
-                        }
-                    }
-                });
+                } else {
+                    Log.d(TAG, "Current data: null");
+                }
+            }
+        });
     }
 }
