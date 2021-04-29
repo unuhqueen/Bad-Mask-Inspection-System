@@ -48,7 +48,7 @@ public class SelectFirstActivity extends AppCompatActivity {
                     myStartActivity(MainActivity.class);
                     break;
                 case R.id.runSheetSelectButton:
-                    startFirstActivity();
+                    myStartActivity(RunSheet1Activity.class);
                     break;
             }
         }

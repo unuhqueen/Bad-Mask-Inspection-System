@@ -23,6 +23,10 @@
         <activity android:name=".PasswordResetActivity"/>
         <activity android:name=".SelectFirstActivity"/>
         <activity android:name=".MaskInspectionActivity"/>
+        <activity android:name=".RunSheet1Activity"/>
+        <activity android:name=".RunSheet2Activity"/>
+        <activity android:name=".RunSheet3Activity"/>
+        <activity android:name=".RunSheet4Activity"/>
     </application>
 
 </manifest>
