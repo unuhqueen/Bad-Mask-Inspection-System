@@ -26,7 +26,7 @@ import java.util.Map;
 public class RunSheet2Activity extends AppCompatActivity {
 
     private static final String TAG = "RunSheet2Activity";
-    String currentTime = getIntent().getStringExtra("CURRENT_TIME");
+    //String currentTime = getIntent().getStringExtra("CURRENT_TIME");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class RunSheet2Activity extends AppCompatActivity {
 
     private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
-        intent.putExtra("CURRENT_TIME", currentTime);
+        //intent.putExtra("CURRENT_TIME", currentTime);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
@@ -113,7 +113,7 @@ public class RunSheet2Activity extends AppCompatActivity {
         lotPerformance.put("작업수", intTaskNumber);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("runsheet").document(currentTime)
+        db.collection("runsheet").document("currentTime")
                 .set(lotPerformance)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
