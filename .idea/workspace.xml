@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="20bb271c-e70f-4f4d-ab12-c6cf76a55c51" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet1Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet1Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet2Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet2Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet3Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet3Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1s9buy30I8n9LJIJU3UsKqx5GFu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="20bb271c-e70f-4f4d-ab12-c6cf76a55c51" name="Default Changelist" comment="" />
+      <created>1620287978616</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620287978616</updated>
+    </task>
+    <servers />
+  </component>
+</project>

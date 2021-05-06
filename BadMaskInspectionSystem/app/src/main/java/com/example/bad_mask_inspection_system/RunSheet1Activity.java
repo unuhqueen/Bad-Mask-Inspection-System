@@ -65,6 +65,25 @@ public class RunSheet1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private int intToString(String str) {
+        int intStr = new Integer(str).intValue();
+        return intStr;
+    }
+
+    private String datePickerToString(DatePicker datePicker){
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int day = datePicker.getDayOfMonth();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        String strDate = format.format(calendar.getTime());
+
+        return strDate;
+    }
+
     private void updateDB() {
 //        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        String todayString = formatter.format(currentTime);
@@ -76,18 +95,9 @@ public class RunSheet1Activity extends AppCompatActivity {
         String width = ((EditText) findViewById(R.id.width)).getText().toString();
         String length = ((EditText) findViewById(R.id.length)).getText().toString();
 
-        int year = datePicker.getYear();
-        int month = datePicker.getMonth();
-        int day = datePicker.getDayOfMonth();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-        String strDate = format.format(calendar.getTime());
-
-        int intWidth = new Integer(width).intValue();
-        int intLength = new Integer(length).intValue();
+        String strDate = datePickerToString(datePicker);
+        int intWidth = intToString(width);
+        int intLength = intToString(length);
 
         Map<String, Object> lotInfo = new HashMap<>();
         lotInfo.put("작업 일자", strDate);

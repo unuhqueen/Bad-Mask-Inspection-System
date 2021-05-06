@@ -67,13 +67,12 @@
             android:textColor="#004497"
             android:textSize="30dp"></TextView>
 
-        <EditText
+        <TimePicker
             android:id="@+id/taskStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:ems="10"
-            android:textSize="30dp"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -83,12 +82,27 @@
             android:textColor="#004497"
             android:textSize="30dp"></TextView>
 
-        <EditText
+        <TimePicker
             android:id="@+id/taskQuitTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Cutting L(mm)"
+            android:textColor="#004497"
+            android:textSize="30dp"></TextView>
+
+        <EditText
+            android:id="@+id/cuttingL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
             android:ems="10"
-            android:layout_marginBottom="30dp"
             android:textSize="30dp"/>
 
         <TextView
@@ -101,22 +115,6 @@
 
         <EditText
             android:id="@+id/taskNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:ems="10"
-            android:textSize="30dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="불량수"
-            android:textColor="#004497"
-            android:textSize="30dp"></TextView>
-
-        <EditText
-            android:id="@+id/defectiveNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"

@@ -37,9 +37,9 @@
             android:id="@+id/dataPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="60dp"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"/>
+            android:calendarViewShown="true"/>
 
         <TextView
             android:layout_width="match_parent"
