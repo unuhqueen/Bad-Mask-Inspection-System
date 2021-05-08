@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="20bb271c-e70f-4f4d-ab12-c6cf76a55c51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet1Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet1Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet2Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet2Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet3Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/java/com/example/bad_mask_inspection_system/RunSheet3Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/app/src/main/res/layout/activity_runsheet_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BadMaskInspectionSystem/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BadMaskInspectionSystem/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Bad-Mask-Inspection-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Bad-Mask-Inspection-System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +24,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BadMaskInspectionSystem" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -42,5 +39,11 @@
       <updated>1620287978616</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1620432274762">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620432274762" />
   </component>
 </project>

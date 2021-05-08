@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -205,7 +206,6 @@ public class MaskInspectionActivity extends AppCompatActivity {
                     Log.d(TAG, "Current data: " + snapshot.getData());
                     TextView tv = (TextView) findViewById(R.id.isMaskDefective);
                     tv.setText(snapshot.getData().get("defectiveOrNot").toString());
-
                 } else {
                     Log.d(TAG, "Current data: null");
                 }
