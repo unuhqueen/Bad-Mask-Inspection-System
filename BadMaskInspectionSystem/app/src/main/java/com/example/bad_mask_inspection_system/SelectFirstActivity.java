@@ -35,7 +35,6 @@ public class SelectFirstActivity extends AppCompatActivity {
             startFirstActivity();
         }
 
-        findViewById(R.id.maskSelectButton).setOnClickListener(onClickListener);
         findViewById(R.id.runSheetSelectButton).setOnClickListener(onClickListener);
     }
 
@@ -44,9 +43,6 @@ public class SelectFirstActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.maskSelectButton:
-                    myStartActivity(MainActivity.class);
-                    break;
                 case R.id.runSheetSelectButton:
                     myStartActivity(RunSheet1Activity.class);
                     break;
