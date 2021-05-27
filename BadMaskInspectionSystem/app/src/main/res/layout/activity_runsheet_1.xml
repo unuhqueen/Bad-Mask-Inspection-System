@@ -946,6 +946,23 @@
             android:ems="10"
             android:textSize="30dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="비밀번호"
+            android:textColor="#004497"
+            android:textSize="30dp"></TextView>
+
+        <EditText
+            android:id="@+id/dbPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:ems="10"
+            android:textSize="30dp"
+            android:inputType="textPassword"/>
+
         <Button
             android:id="@+id/nextButton"
             android:layout_width="match_parent"

@@ -153,6 +153,8 @@ public class RunSheet1Activity extends AppCompatActivity {
         String switchFabric = ((EditText) findViewById(R.id.switchFabric)).getText().toString();
         String restTime = ((EditText) findViewById(R.id.restTime)).getText().toString();
 
+        String dbPassword = ((EditText) findViewById(R.id.dbPassword)).getText().toString();
+
         String strDate = datePickerToString(datePicker);
         int intWidth = intToString(width);
         int intLength = intToString(length);
@@ -232,22 +234,29 @@ public class RunSheet1Activity extends AppCompatActivity {
         lotInfo.put("부품교체",  intSwitchFabric);
         lotInfo.put("휴식/식사",  intRestTime);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("runsheet").document(currentTime)
-                .set(lotInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        startToast("업로드되었습니다.");
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
+        String userPassword = "user1234";
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        if(dbPassword.equals(userPassword)){
+            db.collection("runsheet").document(currentTime)
+                    .set(lotInfo)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            startToast("업로드되었습니다.");
+                            Log.d(TAG, "DocumentSnapshot successfully written!");
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document", e);
+                        }
+                    });
+        } else {
+            startToast("비밀번호가 일치하지 않습니다.");
+        }
+
     }
 }
