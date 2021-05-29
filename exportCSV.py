@@ -93,16 +93,21 @@ root = Tk()
 top = Toplevel()
 root.title("CSV 파일 내보내기")
 top.title("로그인")
-root.geometry("270x190")
+root.geometry("250x150")
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+
+container = Frame(root)   # bg color to show extent
+container.grid(row=0, column=0)
 
 password = StringVar()
 ttk.Label(top, text = "Password : ").grid(row = 1, column = 0, padx = 10, pady = 10)
 ttk.Entry(top, textvariable = password, show="*").grid(row = 1, column = 1, padx = 10, pady = 10)
 ttk.Button(top, text = "Login", command = check_data).grid(row = 2, column = 1, padx = 10, pady = 10)
 
-csvBtn = Button(root, padx=10, pady=10, text="CSV로 내보내기", command=csvCmd)
+csvBtn = Button(container, text='CSV 파일 내보내기', padx = 10, pady = 10, command=csvCmd)
 csvBtn.pack()
-deleteBtn = Button(root, padx=10, pady=10, text="지금까지 DB 기록 삭제하기", command=delCmd)
+deleteBtn = Button(container, text='지금까지 DB 초기화하기', padx = 10, pady = 10, command=delCmd)
 deleteBtn.pack()
 
 root.withdraw()
