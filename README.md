@@ -1,21 +1,20 @@
-### 프로젝트 개요
+### Project Overview
 
 ---
 
-- '딥러닝 알고리즘을 이용한 머신 비전 기반 마스크 불량품 검사 시스템 개발' 프로젝트의 안드로이드 앱 개발
+- Development of Android App for 'Development of Machine Vision-Based Mask Defective Inspection System Using Deep Learning Algorithm' Project
 
-### 기능
-
----
-
-- '마이크로크린' 기업의 기존 ‘마스크 전량을 일일이 수작업으로 불량 검사를 하는 공정’을 ‘마스크 이미지 데이터 취득 후 딥러닝을 통해 불량으로 판정된 마스크만 확인하는 공정’으로 변경
-- 마스크 불량 검사 결과인 텍스트 데이터는 실시간으로 안드로이드 앱을 통해 확인할 수 있도록 하는 기능
-- 기존에 수작업으로 작성하던 작업내역서를 모바일로 이식하고, 필요할 때 CSV 파일로 내보내는 기능
-
-### 나의 역할
+### Function
 
 ---
 
-- 인가된 사내 직원만 앱을 사용할 수 있도록 Firebase의 이메일 인증 기능을 활용한 회원가입/로그인/비밀번호 찾기 기능 구현
-- 불량 검사 결과를 실시간으로 확인하기 위하여, 불량 결과가 적힌 텍스트 데이터를 API를 통해 실시간으로 Firebase DB에 업로드한 후 데이터 변화가 감지될 때마다 앱에서 해당 데이터를 읽어오는 기능 구현
-- 작업내역서 양식을 앱 상에 UI로 구현하여 모바일로 이식하고, 작성한 작업내역서를 Firebase DB에 업로드한 후 CSV 파일로 내보낼 수 있는 기능 구현
+- "Microclean" company's existing "process of manually inspecting all masks" is changed to "process of checking only masks that have been judged to be defective through deep learning after acquiring mask image data."
+- Textual data, which is the result of a mask defect test, can be checked through the Android app in real time.
+- Function to port the existing manual statement to mobile and export it as a CSV file when needed
+
+### My role
+---
+
+- Implement sign-up/login/password finding using Firebase's email authentication function so that only authorized in-house employees can use the app
+- In order to check the results of the defect check in real time, the function to upload textual data with the defect results to the Firebase DB in real time through the API and read the data from the app whenever a data change is detected.
+- Implement the ability to implement the runsheet form into UI on the app, port it to mobile, upload the written runsheet to Firebase DB, and export it to CSV file.
