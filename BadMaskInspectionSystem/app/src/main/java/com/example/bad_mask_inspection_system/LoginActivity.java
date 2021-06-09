@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
+//로그인 화면
+
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    // 로그인 기능 함수
     private void login() {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
         String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();

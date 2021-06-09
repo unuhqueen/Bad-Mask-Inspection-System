@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     >
 
+<!--    불량 여부 판단 화면(현재 프로젝트에서 사용되지 않음)-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,18 +16,6 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         >
-
-<!--        <Button-->
-<!--            android:id="@+id/loadButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="60dp"-->
-<!--            android:background="@drawable/radius"-->
-<!--            android:paddingVertical="10dp"-->
-<!--            android:text="불러오기"-->
-<!--            android:textSize="30dp"-->
-<!--            app:backgroundTint="#6DB1FF"-->
-<!--            android:layout_gravity="right"/>-->
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"

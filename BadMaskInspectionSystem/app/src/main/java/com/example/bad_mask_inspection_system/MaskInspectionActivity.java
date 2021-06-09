@@ -51,6 +51,8 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+//불량 결과 판단하는 화면(현재 프로젝트에서 사용되지 않음)
+
 public class MaskInspectionActivity extends AppCompatActivity {
 
     private static final String TAG = "MaskInspectionActivity";

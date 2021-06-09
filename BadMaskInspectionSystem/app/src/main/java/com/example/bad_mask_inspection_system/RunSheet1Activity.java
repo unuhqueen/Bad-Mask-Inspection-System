@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Calendar;
 
+//작업내역서 작성하는 화면
+
 public class RunSheet1Activity extends AppCompatActivity {
 
     private static final String TAG = "RunSheet1Activity";
@@ -108,6 +110,7 @@ public class RunSheet1Activity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
+    //작업내역서 DB에 업로드하는 기능
     private void updateDB() {
 //        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        String todayString = formatter.format(currentTime);

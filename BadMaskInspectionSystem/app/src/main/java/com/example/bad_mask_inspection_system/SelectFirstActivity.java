@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+//작업 옵션 선택하는 화면
+
 public class SelectFirstActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectFirstActivity";
@@ -38,7 +40,7 @@ public class SelectFirstActivity extends AppCompatActivity {
         findViewById(R.id.runSheetSelectButton).setOnClickListener(onClickListener);
     }
 
-
+    //작업내역서 작성 클릭시 작성 화면으로 이동하는 기능
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

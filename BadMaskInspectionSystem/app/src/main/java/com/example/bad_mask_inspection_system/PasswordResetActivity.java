@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
+//비밀번호 재설정하는 화면
+
 public class PasswordResetActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
@@ -45,6 +47,7 @@ public class PasswordResetActivity extends AppCompatActivity {
         }
     };
 
+    //이메일 보내는 기능
     private void send() {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
 

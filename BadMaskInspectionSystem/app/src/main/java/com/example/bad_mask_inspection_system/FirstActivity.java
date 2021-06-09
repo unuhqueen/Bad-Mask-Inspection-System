@@ -10,10 +10,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+//첫번째 화면
+
 public class FirstActivity extends AppCompatActivity {
 
     private long pressedTime = 0;
     @Override
+    //뒤로가기 버튼 누르면 종료되는 기능
     public void onBackPressed(){
         if ( pressedTime == 0 ) {
             Toast.makeText(FirstActivity.this, "'뒤로' 버튼을 한 번 더 누르시면 종료됩니다." , Toast.LENGTH_LONG).show();

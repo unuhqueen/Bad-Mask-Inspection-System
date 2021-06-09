@@ -23,6 +23,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+//설비, 호기 선택하는 화면(현재 프로젝트에서 사용되지 않음)
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";

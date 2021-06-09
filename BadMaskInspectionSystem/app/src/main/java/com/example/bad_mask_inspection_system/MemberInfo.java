@@ -2,6 +2,8 @@ package com.example.bad_mask_inspection_system;
 
 import android.widget.EditText;
 
+//회원 정보 가져오는 기능
+
 public class MemberInfo {
     private String name;
     private String ownNumber;

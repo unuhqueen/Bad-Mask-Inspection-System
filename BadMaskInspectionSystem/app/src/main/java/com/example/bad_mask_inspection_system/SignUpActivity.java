@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
+//회원가입 화면
+
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
@@ -50,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     };
 
+    //회원가입하는 기능
     private void signUp() {
         String email = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
         String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();

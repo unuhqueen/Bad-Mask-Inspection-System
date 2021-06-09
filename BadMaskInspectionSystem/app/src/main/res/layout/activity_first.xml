@@ -9,6 +9,8 @@
     android:background="#B8D9FF"
     >
 
+<!--첫 화면-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

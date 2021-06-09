@@ -8,6 +8,8 @@
 
     >
 
+<!--    작업내역서 입력 화면-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
